@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải Phương Trình Bậc 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 50px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 60%;
+            height: 500px;
+        }
+
+        h1, h2 {
+            text-align: left;
+            margin: 10px 10px 20px 10px;
+            font-size: 20px;
+        }
+         
+        h2 {
+            margin-top: 40px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input_value {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        input {
+            margin: 10px;
+            width: 100%;
+            padding-bottom: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: solid #ccc 1px;
+            text-decoration: #ccc;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: transparent;
+            border-bottom: solid #333 1px;
+            text-decoration: #333;
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+            margin-top: 40px;
+            padding: 10px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: orangered;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Giải Phương Trình Bậc 2</h1>
+        <div class="input_value">
+            <input type="text" id="a" placeholder="Nhập a">
+            <input type="text" id="b" placeholder="Nhập b">
+            <input type="text" id="c" placeholder="Nhập c">
+        </div>
+        <button onclick="solveEquation()">Giải Phương Trình</button>
+        <h2>Kết quả:</h2>
+        <p id="result"></p>
+    </div>
+    <script>
+        function solveEquation() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            let result;
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                result = "Vui lòng nhập đầy đủ các hệ số a, b, c.";
+            } else {
+                const delta = b * b - 4 * a * c;
+                if (delta < 0) {
+                    result = "Phương trình vô nghiệm.";
+                } else if (delta === 0) {
+                    const x = -b / (2 * a);
+                    result = `Phương trình có nghiệm kép: x = ${x}`;
+                } else {
+                    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    result = `Phương trình có hai nghiệm phân biệt: x1 = ${x1} và x2 = ${x2}`;
+                }
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
